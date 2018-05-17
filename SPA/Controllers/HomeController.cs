@@ -1,0 +1,48 @@
+﻿using SPA.DAL;
+using SPA.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace SPA.Controllers
+{
+    public class HomeController : Controller
+    {
+
+        private ProductContext db = new ProductContext();
+
+        public ActionResult AutoComplete(string term)
+        {
+            var model =
+                db.product
+                .Where(r => r.productName.StartsWith(term))
+                .Take(10)
+                .Select(r => new
+                {
+                    label = r.productName
+                });
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Index(string SearchProduct = null, int SearchCategory =0)
+        {
+            var model =
+                db.product
+                .Where(r => SearchProduct == null || r.productName.StartsWith(SearchProduct)
+                        && r.categoryID == SearchCategory)
+                .Select(r => new ProductListViewModel
+                            {
+                                 categoryID = r.categoryID,
+                                 productsID = r.productsID,
+                                 productsPrice = r.priceProduct,
+                                 productName = r.productName,
+                                 productDesctription = r.productDesctription
+                            }
+                        );
+                
+
+            return View(model);
+        }
+    }
+}

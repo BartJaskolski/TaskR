@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SPA.Models.ProductListViewModel>
+<div id="body">
+
+    <!--MY SECTION -->
+    <section>
+
+        <div class="DivHeader">
+            <div class="DivHeader3">
+  
+                @using (Ajax.BeginForm(
+                    new AjaxOptions
+                    {
+                        HttpMethod = "get",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "productList"
+                    }))
+                {
+                    <input id="SearchString" class="form-control form-control-sm" type="search" placeholder="Czego szukasz ?" name="SearchProduct" data-SPA-autocomplete="@Url.Action("AutoComplete")"/>
+                    <select id="SearchCategory" class="form-control form-control-sm" name="SearchCategory"></select>
+                    <input id="SearchButton" class="btn btn-secondary" type="submit" value="Szukaj >" />
+                }
+            </div>
+        </div>
+        <div class="DivHeader2"></div>
+        <div class="main-content" id="productList">
+            @foreach (var item in Model)
+            {
+                <ul class="list-group">
+                    <li>
+                        <h4>Nazwa produktu: @item.productName</h4>
+                        <h4>KategoriaID :@item.categoryID</h4>
+                        <h4>Cena :@item.productsPrice</h4>
+                    </li>
+                </ul>
+            }
+        </div>
+    </section>
+</div>
