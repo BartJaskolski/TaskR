@@ -27,22 +27,42 @@ namespace SPA.Controllers
         }
         public ActionResult Index(string SearchProduct = null, int SearchCategory =0)
         {
-            var model =
-                db.product
-                .Where(r => SearchProduct == null || r.productName.StartsWith(SearchProduct)
-                        && r.categoryID == SearchCategory)
-                .Select(r => new ProductListViewModel
-                            {
-                                 categoryID = r.categoryID,
-                                 productsID = r.productsID,
-                                 productsPrice = r.priceProduct,
-                                 productName = r.productName,
-                                 productDesctription = r.productDesctription
-                            }
-                        );
-                
+            
+            if (SearchCategory != 0)
+            {
+                var model =
+                    db.product
+                    .Where(r => SearchProduct == null || r.productName.StartsWith(SearchProduct)
+                            && r.categoryID == SearchCategory)
+                    .Select(r => new ProductListViewModel
+                    {
+                        categoryID = r.categoryID,
+                        productsID = r.productsID,
+                        productsPrice = r.priceProduct,
+                        productName = r.productName,
+                        productDesctription = r.productDesctription
+                    }
+                            );
+                return View(model);
+            }
+            else
+            {
+                 var model =
+                    db.product
+                    .Where(r => SearchProduct == null || r.productName.StartsWith(SearchProduct))
+                    .Select(r => new ProductListViewModel
+                    {
+                        categoryID = r.categoryID,
+                        productsID = r.productsID,
+                        productsPrice = r.priceProduct,
+                        productName = r.productName,
+                        productDesctription = r.productDesctription
+                    }
+                            );
+                 return View(model);
+            }
 
-            return View(model);
+            
         }
     }
 }

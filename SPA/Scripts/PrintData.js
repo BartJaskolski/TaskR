@@ -12,6 +12,12 @@
                         text: name.categoryName
                     }))
             })
+            $('#SearchCategory').append($('<option>',
+            {
+                value: 0,
+                text: "Wszystkie Kategorie"
+            }))
+
         }
     });
     $(function () {
