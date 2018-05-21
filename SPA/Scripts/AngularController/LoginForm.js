@@ -1,5 +1,5 @@
 ﻿
-angular.module('AddItemForm')
+angular.module('AddItemForm', [])
 .controller('LoginF', function ($scope, LoginService) {
     $scope.IsLogedIn = false;
     $scope.Message = '';
@@ -11,7 +11,7 @@ angular.module('AddItemForm')
         Password: ''
     };
 
-    $scope.$match('f1.$valid', function (newVal) {
+    $scope.$match = ('f1.$valid', function (newVal) {
         $scope.IsFormVaild = newVal;
     });
 
@@ -30,7 +30,7 @@ angular.module('AddItemForm')
         }
     }
 })
-.factoru('LoginService', function ($http) {
+.factory('LoginService', function ($http) {
     var f = {};
     f.GetUser = function (d) {
         return $http({
