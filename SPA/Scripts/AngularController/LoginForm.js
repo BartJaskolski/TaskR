@@ -17,7 +17,7 @@ angular.module('AddItemForm', [])
 
     $scope.Login = function () {
         $scope.Submitted = true;
-        if ($scoep.IsFormVaild) {
+        if ($scope.IsFormVaild) {
             LoginService.GetUser($scope.LoginData).then(function (d) {
                 if (d.data.Username != null) {
                     $scope.IsLogedIn = true;
