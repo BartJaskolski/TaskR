@@ -76,9 +76,5 @@ namespace SPA.Controllers
         {
             return View();
         }
-        public ActionResult getByAngular()
-        {
-            return View();
-        }
     }
 }
