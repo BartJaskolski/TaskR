@@ -18,6 +18,6 @@ namespace SPA.Controllers
             {
                 return cat.category.ToList();
             }
-        }
+        } 
     }
 }

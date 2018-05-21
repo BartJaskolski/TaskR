@@ -19,5 +19,6 @@ namespace SPA.DAL
         public DbSet<Order> order { get; set; }
         public DbSet<Category> category { get; set; }
         public DbSet<PositionOfOrder> positionOfOrder { get; set; }
+        public DbSet<LoginData> loginData { get; set; }
     }
 }
