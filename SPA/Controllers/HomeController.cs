@@ -64,15 +64,15 @@ namespace SPA.Controllers
         }
         public JsonResult UserLogin(LoginData data)
         {
-            using (ProductContext uData = new ProductContext())
-            {
-                var user = uData.loginData.Where(a => a.UserName.Equals(data.UserName) &&
-                    a.Password.Equals(data.Password)).FirstOrDefault();
-                return new JsonResult { Data = user, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-
-            }
+            var user = db.loginData.Where(a => a.UserName.Equals(data.UserName) &&
+                a.Password.Equals(data.Password)).FirstOrDefault();
+            return new JsonResult { Data = user, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         public ActionResult Login()
+        {
+            return View();
+        }
+        public ActionResult getByAngular()
         {
             return View();
         }

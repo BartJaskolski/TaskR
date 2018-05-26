@@ -1,0 +1,16 @@
+﻿
+<h3>{{message}}</h3>
+
+<form name="LoginForm" ng-submit="Login();">
+    <table>
+        <tr>
+            <td>Login: </td><td><input type="text" ng-model="user.UserName" required/></td>
+        </tr>
+        <tr>
+            <td>Hasło: </td><td><input type="password" ng-model="user.password" required/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Zaloguj" /></td>
+        </tr>
+    </table>
+</form>
